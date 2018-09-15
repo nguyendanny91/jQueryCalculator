@@ -8,12 +8,13 @@ $(document).ready(function() {
     var wholeThing = []
     var operatorHit = false;
     var operatorLock = false;
+    var flagerror = false;
 
     $(".btn").on("click", function() {
         var every = $(this).attr("type")
         wholeThing.push(every)
         console.log(wholeThing)
-        var flagerror = false
+        // var flagerror = false
         if (wholeThing[wholeThing.length-1] =="operator"){
             if (wholeThing[wholeThing.length-2]=="operator") {
                 flagerror =true;
@@ -40,65 +41,35 @@ $(document).ready(function() {
         })
 
     $(".btn").on("click", function() {
-         // display firstnumber function
-         var firstNumberCombine =[];
-         $.each(firstNumber, function(index, value) {
-             firstNumberCombine.push(value);
-         });
-         $('#first-number').html(firstNumberCombine);
+      if (flagerror == false)
+        {
+           // display firstnumber function
+           var firstNumberCombine =[];
+           $.each(firstNumber, function(index, value) {
+               firstNumberCombine.push(value);
+           });
+           $('#first-number').html(firstNumberCombine);
 
-         // operator
-         $('#operator').text(operator);
+           // display secondnumber function
+           var secondNumberCombine =[];
+           $.each(secondNumber, function(index, value) {
+           secondNumberCombine.push(value);
+           });
+           $('#second-number').html(secondNumberCombine);
+          //
+          // operator
+          $('#operator').text(operator);
+        }
+      else
+       {
+         firstNumber = "Error";
+         secondNumber = "";
+         operator = "";
 
+         $('#first-number').html(firstNumber);
+         $('#second-number').html(secondNumber);
+         $('#operator').html(operator);
 
-        // display secondnumber function
-        var secondNumberCombine =[];
-        $.each(secondNumber, function(index, value) {
-        secondNumberCombine.push(value);
-        });
-        $('#second-number').html(secondNumberCombine);
-        
-
-        //
-        //   // operator
-        //   $('#result').text(result);
-        })
-    //
-    // var firstNumber = [4,5,6];
-    // var firstNumberCombine =[]
-    //
-    // var secondNumber = [5,6,7];
-    // var secondNumberCombine = [];
-    //
-    // var operator = "*";
-    // var result = 98230982;
-    //
-    // var errorFlag = false;
-    //
-    //
-    // if (flagerror == false) {
-    //
-    //    // display firstnumber function
-    //    $.each(firstNumber, function(index, value) {
-    //        firstNumberCombine.push(value);
-    //    });
-    //    $('#first-number').html(firstNumberCombine);
-    //
-    //
-    //    // secondnumber function
-    //    $.each(secondNumber, function(index, value) {
-    //        secondNumberCombine.push(value);
-    //    });
-    //    $('#second-number').html(secondNumberCombine);
-    //
-    //    // operator
-    //    $('#operator').text(operator);
-    //
-    //    // result
-    //    $('#result').text(result);
-    //    }
-    // else {
-    //    $('#first-number').text("Error");
-    //    };
-
+       }
+    })
 })
